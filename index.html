@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Shruti Kolli - Cardiologist</title>
   <style>
-    /* General Styles */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -15,46 +14,61 @@
     }
 
     header {
-      position: relative;
-      text-align: center;
-      padding: 4rem 1rem 2rem 1rem;
-      background: rgba(255,255,255,0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 2rem;
+      background: rgba(255, 255, 255, 0.4); /* lighter to show bg */
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      overflow: hidden;
+      flex-wrap: wrap;
     }
 
-    header h1 {
+    .header-left {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .header-left h1 {
       font-size: 2.5rem;
       margin: 0;
       color: #b30000;
     }
 
-    header p {
+    .header-left p {
       font-size: 1.2rem;
-      margin: 0.5rem 0 0;
+      margin-top: 0.5rem;
     }
 
-    /* Doctor photos - static circles */
-    .doctor-photos {
-      margin-top: 1rem;
+    .header-right {
+      flex: 1;
       display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      z-index: 1;
+      justify-content: flex-end;
+      min-width: 250px;
       position: relative;
     }
 
-    .doctor-photos img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
+    .doctor-circle {
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
-      border: 2px solid #b30000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      overflow: hidden;
+      border: 3px solid #b30000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      position: relative;
     }
 
-    /* Carousel */
+    .doctor-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
     .carousel {
       position: relative;
       overflow: hidden;
@@ -69,11 +83,15 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.8s ease-in-out;
     }
 
-    /* Section styles */
     section {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.3); /* more transparent */
       margin: 2rem auto;
       padding: 2rem;
       border-radius: 12px;
@@ -86,7 +104,6 @@
       margin-top: 0;
     }
 
-    /* Form */
     form input, form textarea, form button {
       display: block;
       width: 100%;
@@ -105,7 +122,6 @@
       border: none;
     }
 
-    /* Locations */
     .location-item {
       margin-bottom: 1.5rem;
     }
@@ -119,24 +135,27 @@
       margin: 0.3rem 0;
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 2rem;
       color: white;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.5);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Dr. Shruti Kolli</h1>
-    <p>Consultant Cardiologist</p>
-    <div class="doctor-photos">
-      <img src="images/1000125482.jpg" alt="Doctor Photo 1">
-      <img src="images/1000125485.jpg" alt="Doctor Photo 2">
-      <img src="images/1000125497.jpg" alt="Doctor Photo 3">
-      <img src="images/1000125503.jpg" alt="Doctor Photo 4">
+    <div class="header-left">
+      <h1>Dr. Shruti Kolli</h1>
+      <p>Consultant Cardiologist</p>
+    </div>
+    <div class="header-right">
+      <div class="doctor-circle">
+        <img id="doctor-img-0" src="images/1000125482.jpg" alt="Doctor Photo 1">
+        <img id="doctor-img-1" src="images/1000125485.jpg" alt="Doctor Photo 2">
+        <img id="doctor-img-2" src="images/1000125497.jpg" alt="Doctor Photo 3">
+        <img id="doctor-img-3" src="images/1000125503.jpg" alt="Doctor Photo 4">
+      </div>
     </div>
   </header>
 
@@ -215,8 +234,23 @@
       });
     }
 
-    // Carousel JavaScript
-    const images = [
+    // Header doctor rotation with fade
+    const doctorImgs = [
+      document.getElementById('doctor-img-0'),
+      document.getElementById('doctor-img-1'),
+      document.getElementById('doctor-img-2'),
+      document.getElementById('doctor-img-3')
+    ];
+    let doctorIndex = 0;
+    doctorImgs[doctorIndex].style.opacity = 1;
+    setInterval(() => {
+      doctorImgs[doctorIndex].style.opacity = 0;
+      doctorIndex = (doctorIndex + 1) % doctorImgs.length;
+      doctorImgs[doctorIndex].style.opacity = 1;
+    }, 2000);
+
+    // Carousel rotation with fade
+    const carouselImages = [
       "images/1000125497.jpg",
       "images/1000125503.jpg",
       "images/1000125482.jpg",
@@ -235,14 +269,18 @@
       "images/1000125518.jpg"
     ];
 
-    let index = 0;
     const carouselImg = document.querySelector('.carousel-img');
+    let carouselIndex = 0;
+    carouselImg.style.opacity = 1;
     setInterval(() => {
-      index = (index + 1) % images.length;
-      carouselImg.src = images[index];
-    }, 2000); // 2-second interval
+      carouselImg.style.opacity = 0;
+      setTimeout(() => {
+        carouselIndex = (carouselIndex + 1) % carouselImages.length;
+        carouselImg.src = carouselImages[carouselIndex];
+        carouselImg.style.opacity = 1;
+      }, 800); // match transition
+    }, 2000);
   </script>
-
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
 </body>
 </html>
