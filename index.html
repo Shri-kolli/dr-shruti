@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('images/1000125476.jpg') no-repeat center center fixed;
+      background: url('images/heart.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: #222;
     }
@@ -18,7 +18,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 4rem 2rem;
-      background: rgba(255, 255, 255, 0.4); /* lighter to show bg */
+      background: rgba(255, 255, 255, 0.6); /* more opaque for readability */
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       flex-wrap: wrap;
     }
@@ -29,13 +29,13 @@
     }
 
     .header-left h1 {
-      font-size: 2.5rem;
+      font-size: 3rem; /* bigger & catchy */
       margin: 0;
       color: #b30000;
     }
 
     .header-left p {
-      font-size: 1.2rem;
+      font-size: 1.5rem; /* bigger subheading */
       margin-top: 0.5rem;
     }
 
@@ -48,12 +48,12 @@
     }
 
     .doctor-circle {
-      width: 150px;
-      height: 150px;
+      width: 225px; /* 1.5 times bigger */
+      height: 225px;
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid #b30000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       position: relative;
     }
 
@@ -72,7 +72,7 @@
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 400px;
+      height: 450px;
       border-radius: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       margin-bottom: 2rem;
@@ -81,7 +81,7 @@
     .carousel img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* show full image */
       display: block;
       opacity: 0;
       position: absolute;
@@ -91,7 +91,7 @@
     }
 
     section {
-      background: rgba(255,255,255,0.3); /* more transparent */
+      background: rgba(255,255,255,0.5); /* more readable */
       margin: 2rem auto;
       padding: 2rem;
       border-radius: 12px;
@@ -101,6 +101,7 @@
 
     h2 {
       color: #b30000;
+      font-size: 2rem; /* bigger heading */
       margin-top: 0;
     }
 
@@ -209,7 +210,6 @@
       <textarea name="message" rows="4" placeholder="Additional details"></textarea>
       <button type="submit">Send Appointment Request</button>
     </form>
-    <p style="font-size:0.9rem; color:#555;">This form will send the appointment details to the doctor's email. SMS alerts can be integrated later with a service like Twilio.</p>
   </section>
 
   <footer>
@@ -217,7 +217,6 @@
   </footer>
 
   <script>
-    // Google Map
     function initMap() {
       var locations = [
         { lat: 12.9716, lng: 77.5946, title: "Clinic 1", hours: "Mon to Sat - 10:00 AM to 4:00 PM" },
@@ -234,7 +233,7 @@
       });
     }
 
-    // Header doctor rotation with fade
+    // Header doctor rotation
     const doctorImgs = [
       document.getElementById('doctor-img-0'),
       document.getElementById('doctor-img-1'),
@@ -249,26 +248,13 @@
       doctorImgs[doctorIndex].style.opacity = 1;
     }, 2000);
 
-    // Carousel rotation with fade
+    // Carousel rotation
     const carouselImages = [
-      "images/1000125497.jpg",
-      "images/1000125503.jpg",
-      "images/1000125482.jpg",
-      "images/1000125506.jpg",
-      "images/1000125452.jpg",
-      "images/1000125455.jpg",
-      "images/1000125458.jpg",
-      "images/1000125467.jpg",
-      "images/1000125473.jpg",
-      "images/1000125485.jpg",
-      "images/1000125488.jpg",
-      "images/1000125491.jpg",
-      "images/1000125509.jpg",
-      "images/1000125530.jpg",
-      "images/1000125533.jpg",
-      "images/1000125518.jpg"
+      "images/1000125497.jpg","images/1000125503.jpg","images/1000125482.jpg","images/1000125506.jpg",
+      "images/1000125452.jpg","images/1000125455.jpg","images/1000125458.jpg","images/1000125467.jpg",
+      "images/1000125473.jpg","images/1000125485.jpg","images/1000125488.jpg","images/1000125491.jpg",
+      "images/1000125509.jpg","images/1000125530.jpg","images/1000125533.jpg","images/1000125518.jpg"
     ];
-
     const carouselImg = document.querySelector('.carousel-img');
     let carouselIndex = 0;
     carouselImg.style.opacity = 1;
@@ -278,9 +264,10 @@
         carouselIndex = (carouselIndex + 1) % carouselImages.length;
         carouselImg.src = carouselImages[carouselIndex];
         carouselImg.style.opacity = 1;
-      }, 800); // match transition
+      }, 800);
     }, 2000);
   </script>
+
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
 </body>
 </html>
