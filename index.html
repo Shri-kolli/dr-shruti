@@ -5,61 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Shruti Kolli - Cardiologist</title>
   <style>
-    body {
+    :root {
+      --primary-red: #b30000;
+      --dark-red: #8c0000;
+      --light-bg: rgba(255, 255, 255, 0.85);
+      --section-bg: rgba(255, 255, 255, 0.75);
+      --text-dark: #222;
+      --text-light: #555;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+    
+    body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: url('images/heart.jpeg') no-repeat center center fixed;
       background-size: cover;
-      color: #222;
+      color: var(--text-dark);
       line-height: 1.6;
     }
-
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* HEADER */
     header {
+      background: var(--light-bg);
+      box-shadow: var(--shadow);
+      padding: 2rem 0;
+    }
+    
+    .header-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4rem 2rem;
-      background: rgba(255, 255, 255, 0.65);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
       flex-wrap: wrap;
+      gap: 2rem;
     }
-
-    .header-left {
+    
+    .header-text {
       flex: 1;
-      min-width: 250px;
+      min-width: 300px;
     }
-
-    .header-left h1 {
-      font-size: 3.2rem;
-      margin: 0;
-      color: #b30000;
+    
+    .header-text h1 {
+      font-size: 2.2rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--primary-red);
     }
-
-    .header-left p {
-      font-size: 1.3rem;
-      margin-top: 0.7rem;
-      max-width: 600px;
+    
+    .header-text p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
     }
-
-    .header-right {
+    
+    .header-image {
       flex: 1;
       display: flex;
-      justify-content: flex-end;
-      min-width: 250px;
-      position: relative;
+      justify-content: center;
+      min-width: 300px;
     }
-
-    .doctor-circle {
-      width: 440px; /* 25% bigger */
-      height: 440px;
+    
+    .doctor-image {
+      width: 280px;
+      height: 280px;
       border-radius: 50%;
       overflow: hidden;
-      border: 5px solid #b30000;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+      border: 4px solid var(--primary-red);
+      box-shadow: var(--shadow);
       position: relative;
     }
-
-    .doctor-circle img {
+    
+    .doctor-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -70,16 +95,34 @@
       left: 0;
       transition: opacity 1s ease-in-out;
     }
-
+    
+    /* SECTIONS */
+    section {
+      background: var(--section-bg);
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+    
+    h2 {
+      color: var(--primary-red);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(179, 0, 0, 0.2);
+    }
+    
+    /* CAROUSEL */
     .carousel {
       position: relative;
       overflow: hidden;
-      height: 450px;
-      border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-      margin-bottom: 2rem;
+      height: 400px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      margin-bottom: 1rem;
     }
-
+    
     .carousel img {
       width: 100%;
       height: 100%;
@@ -91,180 +134,265 @@
       left: 0;
       transition: opacity 1s ease-in-out;
     }
-
-    section {
-      background: rgba(255,255,255,0.4);
-      margin: 2rem auto;
-      padding: 2.5rem;
-      border-radius: 14px;
-      max-width: 1000px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    h2 {
-      color: #b30000;
-      font-size: 2rem;
-      margin-top: 0;
+    
+    /* CONTENT STYLING */
+    p, li {
       margin-bottom: 1rem;
+      color: var(--text-dark);
     }
-
+    
+    ul {
+      padding-left: 1.5rem;
+    }
+    
     li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.7rem;
     }
-
+    
+    /* LOCATIONS */
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .location-item {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    
+    .location-item h3 {
+      margin: 0 0 0.7rem 0;
+      color: var(--primary-red);
+    }
+    
+    .location-item p {
+      margin: 0.3rem 0;
+    }
+    
+    /* FORM */
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    .form-full-width {
+      grid-column: 1 / -1;
+    }
+    
     form input, form textarea, form button {
-      display: block;
       width: 100%;
-      margin-bottom: 1rem;
-      padding: 0.9rem;
+      padding: 0.8rem;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 1rem;
+      font-family: inherit;
     }
-
+    
+    form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
     form button {
-      background: #b30000;
+      background: var(--primary-red);
       color: white;
       font-weight: bold;
       cursor: pointer;
       border: none;
       transition: background 0.3s ease;
+      padding: 1rem;
     }
-
+    
     form button:hover {
-      background: #8c0000;
+      background: var(--dark-red);
     }
-
-    .location-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .location-item h3 {
-      margin: 0;
-      color: #333;
-    }
-
-    .location-item p {
-      margin: 0.3rem 0;
-    }
-
+    
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 2rem;
       color: white;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       font-size: 0.95rem;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .header-text h1 {
+        font-size: 1.8rem;
+      }
+      
+      .doctor-image {
+        width: 220px;
+        height: 220px;
+      }
+      
+      form {
+        grid-template-columns: 1fr;
+      }
+      
+      section {
+        padding: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 15px;
+      }
+      
+      .header-text h1 {
+        font-size: 1.6rem;
+      }
+      
+      .doctor-image {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .carousel {
+        height: 250px;
+      }
     }
   </style>
 </head>
 <body>
   <!-- HEADER -->
   <header>
-    <div class="header-left">
-      <h1>Dr. Shruti Kolli</h1>
-      <p>MD (Gold), DM - Cardiologist <br>
-         Interventional Cardiologist <br>
-         Assistant Professor of Cardiology, Jayadeva Hospital
-      </p>
-    </div>
-    <div class="header-right">
-      <div class="doctor-circle">
-        <img id="doctor-img-0" src="images/1000125476.jpg" alt="Doctor Photo 1">
-        <img id="doctor-img-1" src="images/1000125485.jpg" alt="Doctor Photo 2">
-        <img id="doctor-img-2" src="images/1000125476.jpg" alt="Doctor Photo 3">
-        <img id="doctor-img-3" src="images/1000125503.jpg" alt="Doctor Photo 4">
+    <div class="container">
+      <div class="header-content">
+        <div class="header-text">
+          <h1>Dr. Shruti Kolli</h1>
+          <p>MD (Gold), DM - Cardiologist</p>
+          <p>Interventional Cardiologist</p>
+          <p>Assistant Professor of Cardiology, Jayadeva Hospital</p>
+        </div>
+        <div class="header-image">
+          <div class="doctor-image">
+            <img id="doctor-img-0" src="images/1000125476.jpg" alt="Dr. Shruti Kolli">
+            <img id="doctor-img-1" src="images/1000125485.jpg" alt="Dr. Shruti Kolli">
+            <img id="doctor-img-2" src="images/1000125476.jpg" alt="Dr. Shruti Kolli">
+            <img id="doctor-img-3" src="images/1000125503.jpg" alt="Dr. Shruti Kolli">
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- HERO CAROUSEL -->
-  <section>
-    <div class="carousel">
-      <img class="carousel-img" src="images/1000125497.jpg" alt="Carousel Image">
-    </div>
-  </section>
+  <div class="container">
+    <!-- HERO CAROUSEL -->
+    <section>
+      <div class="carousel">
+        <img class="carousel-img" src="images/1000125497.jpg" alt="Medical Procedures">
+      </div>
+    </section>
 
-  <!-- ABOUT -->
-  <section>
-    <h2>About</h2>
-    <p>Dr. Shruti Kolli is a dedicated Consultant Cardiologist with extensive experience in managing complex cardiac conditions in both adult and pediatric patients. Over the years, she has gained specialized training in advanced cardiology procedures, heart failure management, and non-invasive as well as interventional techniques.</p>
-    <ul>
-      <li>Performing detailed adult and pediatric 2D echocardiography</li>
-      <li>Advanced ECG, Holter, HUTT, CPET analysis</li>
-      <li>Exposure to EP & RFA, 3D CARTO mapping and assisting structural heart procedures</li>
-      <li>Experience in advanced imaging (IVUS, OCT) and therapeutics (Rota ablation, IVL)</li>
-      <li>Management of heart failure, cardiomyopathy, ECMO, IMPELLA cases</li>
-      <li>Exposure to CRT, TAVI, leadless pacemakers (Micra), and cardiac transplants</li>
-    </ul>
-  </section>
+    <!-- ABOUT -->
+    <section>
+      <h2>About</h2>
+      <p>Dr. Shruti Kolli is a dedicated Consultant Cardiologist with extensive experience in managing complex cardiac conditions in both adult and pediatric patients. Over the years, she has gained specialized training in advanced cardiology procedures, heart failure management, and non-invasive as well as interventional techniques.</p>
+      <ul>
+        <li>Performing detailed adult and pediatric 2D echocardiography</li>
+        <li>Advanced ECG, Holter, HUTT, CPET analysis</li>
+        <li>Exposure to EP & RFA, 3D CARTO mapping and assisting structural heart procedures</li>
+        <li>Experience in advanced imaging (IVUS, OCT) and therapeutics (Rota ablation, IVL)</li>
+        <li>Management of heart failure, cardiomyopathy, ECMO, IMPELLA cases</li>
+        <li>Exposure to CRT, TAVI, leadless pacemakers (Micra), and cardiac transplants</li>
+      </ul>
+    </section>
 
-  <!-- EDUCATION -->
-  <section>
-    <h2>Education</h2>
-    <ul>
-      <li>D.M. Cardiology – MS Ramaiah Medical College, RGUHS University, Bangalore (2019–2022)</li>
-      <li>M.D. General Medicine (Gold Medalist) – Shri B.M. Patil Medical College, BLDE University, Vijayapur (2014–2017)</li>
-      <li>M.B.B.S. – Shri B.M. Patil Medical College, BLDE University, Vijayapur (2008–2014)</li>
-    </ul>
-  </section>
+    <!-- EDUCATION -->
+    <section>
+      <h2>Education</h2>
+      <ul>
+        <li>D.M. Cardiology – MS Ramaiah Medical College, RGUHS University, Bangalore (2019–2022)</li>
+        <li>M.D. General Medicine (Gold Medalist) – Shri B.M. Patil Medical College, BLDE University, Vijayapur (2014–2017)</li>
+        <li>M.B.B.S. – Shri B.M. Patil Medical College, BLDE University, Vijayapur (2008–2014)</li>
+      </ul>
+    </section>
 
-  <!-- EXPERIENCE -->
-  <section>
-    <h2>Experience</h2>
-    <ul>
-      <li>Sri Jayadeva Institute of Cardiology, Kalaburgi – Associate Consultant Cardiologist (2022–Present)</li>
-      <li>Apollo Hospitals, Bangalore – Associate Consultant Cardiologist (2021–2022)</li>
-      <li>Apollo Hospitals, Chennai (Greams Road) – Senior Registrar in Cardiology (2019–2020)</li>
-      <li>District Hospital, Vijayapur – Senior Specialist Physician (2017–2018)</li>
-    </ul>
-  </section>
+    <!-- EXPERIENCE -->
+    <section>
+      <h2>Experience</h2>
+      <ul>
+        <li>Sri Jayadeva Institute of Cardiology, Kalaburgi – Associate Consultant Cardiologist (2022–Present)</li>
+        <li>Apollo Hospitals, Bangalore – Associate Consultant Cardiologist (2021–2022)</li>
+        <li>Apollo Hospitals, Chennai (Greams Road) – Senior Registrar in Cardiology (2019–2020)</li>
+        <li>District Hospital, Vijayapur – Senior Specialist Physician (2017–2018)</li>
+      </ul>
+    </section>
 
-  <!-- PUBLICATIONS -->
-  <section>
-    <h2>Conferences & Publications</h2>
-    <ul>
-      <li>Clinical Profile of Community Acquired Pneumonia in Elderly – JKIMSU, 2017</li>
-      <li>Clinical Profile of Falls in Elderly – SJAMS, 2017</li>
-      <li>Identifying Dementia in Elderly Population: A Camp Approach – JEBMH, 2015</li>
-      <li>Beyond Angiogram! Impact of IVUS on Revascularization of Complex CAD – Indian Heart Journal, 2021</li>
-    </ul>
-  </section>
+    <!-- PUBLICATIONS -->
+    <section>
+      <h2>Conferences & Publications</h2>
+      <ul>
+        <li>Clinical Profile of Community Acquired Pneumonia in Elderly – JKIMSU, 2017</li>
+        <li>Clinical Profile of Falls in Elderly – SJAMS, 2017</li>
+        <li>Identifying Dementia in Elderly Population: A Camp Approach – JEBMH, 2015</li>
+        <li>Beyond Angiogram! Impact of IVUS on Revascularization of Complex CAD – Indian Heart Journal, 2021</li>
+      </ul>
+    </section>
 
-  <!-- LOCATIONS -->
-  <section>
-    <h2>Clinic Locations & Timings</h2>
-    <div class="location-item">
-      <h3>Clinic 1 - Jayadeva</h3>
-      <p>Address: [Full Address]</p>
-      <p>Timings: Mon to Sat - 10:00 AM to 4:00 PM</p>
-    </div>
-    <div class="location-item">
-      <h3>Clinic 2 - Ikon</h3>
-      <p>Address: [Full Address]</p>
-      <p>Timings: Mon to Sat - 4:00 PM to 8:00 PM</p>
-    </div>
-    <div id="map" style="height:400px; width:100%; border-radius: 12px;"></div>
-  </section>
+    <!-- LOCATIONS -->
+    <section>
+      <h2>Clinic Locations & Timings</h2>
+      <div class="locations-grid">
+        <div class="location-item">
+          <h3>Clinic 1 - Jayadeva</h3>
+          <p>Address: JAYADEVA MEDICAL SCIENCES CAMPUS, SEDAM ROAD, KALABURAGI.</p>
+          <p>Timings: Mon to Sat - 10:00 AM to 4:00 PM</p>
+        </div>
+        <div class="location-item">
+          <h3>Clinic 2 - Ikon</h3>
+          <p>Address: MSK Mill Rd, beside Bus Stand, Godutai Nagar, Kalaburagi, Karnataka 585102, India</p>
+          <p>Timings: Mon to Sat - 4:00 PM to 8:00 PM</p>
+        </div>
+      </div>
+      <div id="map" style="height:400px; width:100%; border-radius: 10px;"></div>
+    </section>
 
-  <!-- CONTACT -->
-  <section>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:dr.email@example.com">dr.email@example.com</a></p>
-    <p>Phone: +91-XXXXXXXXXX</p>
-  </section>
+    <!-- CONTACT -->
+    <section>
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:dr.email@example.com">dr.email@example.com</a></p>
+      <p>Phone: +91-XXXXXXXXXX</p>
+    </section>
 
-  <!-- APPOINTMENT -->
-  <section>
-    <h2>Book an Appointment</h2>
-    <form action="https://formspree.io/f/yourformid" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <input type="tel" name="phone" placeholder="Your Phone Number" required>
-      <input type="date" name="date" required>
-      <textarea name="message" rows="4" placeholder="Additional details"></textarea>
-      <button type="submit">Send Appointment Request</button>
-    </form>
-  </section>
+    <!-- APPOINTMENT -->
+    <section>
+      <h2>Book an Appointment</h2>
+      <form action="https://formspree.io/f/yourformid" method="POST">
+        <div>
+          <input type="text" name="name" placeholder="Your Name" required>
+        </div>
+        <div>
+          <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div>
+          <input type="tel" name="phone" placeholder="Your Phone Number" required>
+        </div>
+        <div>
+          <input type="date" name="date" required>
+        </div>
+        <div class="form-full-width">
+          <textarea name="message" rows="4" placeholder="Additional details"></textarea>
+        </div>
+        <div class="form-full-width">
+          <button type="submit">Send Appointment Request</button>
+        </div>
+      </form>
+    </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -324,6 +452,6 @@
       });
     }
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
+  <script async defer src="https://maps.app.goo.gl/VLh49qt9tjiv8VRm7"></script>
 </body>
 </html>
