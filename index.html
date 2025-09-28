@@ -23,49 +23,35 @@
       overflow: hidden;
     }
 
-    /* Sliding doctor photos behind header */
-    .header-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .doctor-photos-bg {
-      display: flex;
-      animation: slideDoctors 20s linear infinite;
-    }
-
-    .doctor-photos-bg img {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin: 0 20px;
-      opacity: 0.6;
-    }
-
-    @keyframes slideDoctors {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } /* adjust based on number of images */
-    }
-
     header h1 {
       font-size: 2.5rem;
       margin: 0;
       color: #b30000;
-      position: relative;
-      z-index: 1;
     }
 
     header p {
       font-size: 1.2rem;
       margin: 0.5rem 0 0;
-      position: relative;
+    }
+
+    /* Doctor photos - static circles */
+    .doctor-photos {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
       z-index: 1;
+      position: relative;
+    }
+
+    .doctor-photos img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #b30000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
     /* Carousel */
@@ -78,36 +64,11 @@
       margin-bottom: 2rem;
     }
 
-    .slides {
-      display: flex;
-      width: calc(100% * 16); /* number of images */
-      animation: slideCarousel 32s linear infinite;
-    }
-
-    .slides img {
-      flex: 0 0 100%;
-      height: 400px;
+    .carousel img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-    }
-
-    @keyframes slideCarousel {
-      0%   { transform: translateX(0); }
-      6.25%  { transform: translateX(-100%); }
-      12.5%  { transform: translateX(-200%); }
-      18.75% { transform: translateX(-300%); }
-      25%    { transform: translateX(-400%); }
-      31.25% { transform: translateX(-500%); }
-      37.5%  { transform: translateX(-600%); }
-      43.75% { transform: translateX(-700%); }
-      50%    { transform: translateX(-800%); }
-      56.25% { transform: translateX(-900%); }
-      62.5%  { transform: translateX(-1000%); }
-      68.75% { transform: translateX(-1100%); }
-      75%    { transform: translateX(-1200%); }
-      81.25% { transform: translateX(-1300%); }
-      87.5%  { transform: translateX(-1400%); }
-      93.75% { transform: translateX(-1500%); }
-      100%   { transform: translateX(0); }
+      display: block;
     }
 
     /* Section styles */
@@ -169,38 +130,19 @@
 </head>
 <body>
   <header>
-    <div class="header-bg">
-      <div class="doctor-photos-bg">
-        <img src="images/1000125482.jpg" alt="Doctor Photo 1">
-        <img src="images/1000125485.jpg" alt="Doctor Photo 2">
-        <img src="images/1000125497.jpg" alt="Doctor Photo 3">
-        <img src="images/1000125503.jpg" alt="Doctor Photo 4">
-      </div>
-    </div>
     <h1>Dr. Shruti Kolli</h1>
     <p>Consultant Cardiologist</p>
+    <div class="doctor-photos">
+      <img src="images/1000125482.jpg" alt="Doctor Photo 1">
+      <img src="images/1000125485.jpg" alt="Doctor Photo 2">
+      <img src="images/1000125497.jpg" alt="Doctor Photo 3">
+      <img src="images/1000125503.jpg" alt="Doctor Photo 4">
+    </div>
   </header>
 
   <section>
     <div class="carousel">
-      <div class="slides">
-        <img src="images/1000125497.jpg" alt="Cardiology Conference">
-        <img src="images/1000125503.jpg" alt="Cardiology Conference">
-        <img src="images/1000125482.jpg" alt="Doctor at Work">
-        <img src="images/1000125506.jpg" alt="Doctor at Work">
-        <img src="images/1000125452.jpg" alt="Felicitations">
-        <img src="images/1000125455.jpg" alt="Felicitations">
-        <img src="images/1000125458.jpg" alt="Felicitations">
-        <img src="images/1000125467.jpg" alt="Felicitations">
-        <img src="images/1000125473.jpg" alt="Felicitations">
-        <img src="images/1000125485.jpg" alt="Awards">
-        <img src="images/1000125488.jpg" alt="Awards">
-        <img src="images/1000125491.jpg" alt="Awards">
-        <img src="images/1000125509.jpg" alt="Awards">
-        <img src="images/1000125530.jpg" alt="Awards">
-        <img src="images/1000125533.jpg" alt="Awards">
-        <img src="images/1000125518.jpg" alt="Heart Health Awareness">
-      </div>
+      <img class="carousel-img" src="images/1000125497.jpg" alt="Carousel Image">
     </div>
   </section>
 
@@ -256,6 +198,7 @@
   </footer>
 
   <script>
+    // Google Map
     function initMap() {
       var locations = [
         { lat: 12.9716, lng: 77.5946, title: "Clinic 1", hours: "Mon to Sat - 10:00 AM to 4:00 PM" },
@@ -271,7 +214,35 @@
         marker.addListener("click", function() { infowindow.open(map, marker); });
       });
     }
+
+    // Carousel JavaScript
+    const images = [
+      "images/1000125497.jpg",
+      "images/1000125503.jpg",
+      "images/1000125482.jpg",
+      "images/1000125506.jpg",
+      "images/1000125452.jpg",
+      "images/1000125455.jpg",
+      "images/1000125458.jpg",
+      "images/1000125467.jpg",
+      "images/1000125473.jpg",
+      "images/1000125485.jpg",
+      "images/1000125488.jpg",
+      "images/1000125491.jpg",
+      "images/1000125509.jpg",
+      "images/1000125530.jpg",
+      "images/1000125533.jpg",
+      "images/1000125518.jpg"
+    ];
+
+    let index = 0;
+    const carouselImg = document.querySelector('.carousel-img');
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      carouselImg.src = images[index];
+    }, 2000); // 2-second interval
   </script>
+
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
 </body>
 </html>
