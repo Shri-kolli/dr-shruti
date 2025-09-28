@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. [Your Sister's Name] - Cardiologist</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('images/heart-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #222;
+    }
+    header {
+      background: rgba(255,255,255,0.85);
+      text-align: center;
+      padding: 2rem 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #b30000;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin: 0.5rem 0 0;
+    }
+    .doctor-photos {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .doctor-photos img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #b30000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    section {
+      background: rgba(255,255,255,0.9);
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 1000px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      height: 350px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .slides {
+      display: flex;
+      width: 300%;
+      animation: slide 12s infinite;
+    }
+    .slides img {
+      width: 100%;
+      object-fit: cover;
+    }
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+    h2 {
+      color: #b30000;
+      margin-top: 0;
+    }
+    form input, form textarea, form button {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    form button {
+      background: #b30000;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+    .location-item {
+      margin-bottom: 1.5rem;
+    }
+    .location-item h3 {
+      margin: 0;
+      color: #333;
+    }
+    .location-item p {
+      margin: 0.3rem 0;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: white;
+      background: rgba(0,0,0,0.7);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dr. [Your Sister's Name]</h1>
+    <p>Consultant Cardiologist</p>
+    <div class="doctor-photos">
+      <img src="images/doc1.jpg" alt="Doctor Photo 1">
+      <img src="images/doc2.jpg" alt="Doctor Photo 2">
+      <img src="images/doc3.jpg" alt="Doctor Photo 3">
+    </div>
+  </header>
+
+  <section>
+    <div class="carousel">
+      <div class="slides">
+        <img src="images/heart1.jpg" alt="Cardiology Conference">
+        <img src="images/heart2.jpg" alt="Doctor at Work">
+        <img src="images/heart3.jpg" alt="Heart Health Awareness">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>About</h2>
+    <p>[Short bio about your sister, her expertise, and her dedication to cardiology.]</p>
+  </section>
+
+  <section>
+    <h2>Conferences & Publications</h2>
+    <ul>
+      <li>[Conference/Publication details]</li>
+      <li>[Conference/Publication details]</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Clinic Locations & Timings</h2>
+    <div class="location-item">
+      <h3>Clinic 1 - [Hospital/Clinic Name]</h3>
+      <p>Address: [Full Address]</p>
+      <p>Timings: Mon, Wed, Fri - 10:00 AM to 1:00 PM</p>
+    </div>
+    <div class="location-item">
+      <h3>Clinic 2 - [Hospital/Clinic Name]</h3>
+      <p>Address: [Full Address]</p>
+      <p>Timings: Tue, Thu - 4:00 PM to 7:00 PM</p>
+    </div>
+    <div class="location-item">
+      <h3>Clinic 3 - [Hospital/Clinic Name]</h3>
+      <p>Address: [Full Address]</p>
+      <p>Timings: Saturday - 9:00 AM to 12:00 PM</p>
+    </div>
+    <div id="map" style="height:400px; width:100%; border-radius: 12px;"></div>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:dr.email@example.com">dr.email@example.com</a></p>
+    <p>Phone: +91-XXXXXXXXXX</p>
+  </section>
+
+  <section>
+    <h2>Book an Appointment</h2>
+    <form action="https://formspree.io/f/yourformid" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="tel" name="phone" placeholder="Your Phone Number" required>
+      <input type="date" name="date" required>
+      <textarea name="message" rows="4" placeholder="Additional details"></textarea>
+      <button type="submit">Send Appointment Request</button>
+    </form>
+    <p style="font-size:0.9rem; color:#555;">This form will send the appointment details to the doctor's email. SMS alerts can be integrated later with a service like Twilio.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Dr. [Your Sister's Name]. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function initMap() {
+      var locations = [
+        { lat: 12.9716, lng: 77.5946, title: "Clinic 1", hours: "Mon, Wed, Fri - 10AM to 1PM" },
+        { lat: 12.9352, lng: 77.6245, title: "Clinic 2", hours: "Tue, Thu - 4PM to 7PM" },
+        { lat: 12.9981, lng: 77.5521, title: "Clinic 3", hours: "Sat - 9AM to 12PM" }
+      ];
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: locations[0]
+      });
+      locations.forEach(function(loc) {
+        var marker = new google.maps.Marker({ position: loc, map: map, title: loc.title });
+        var infowindow = new google.maps.InfoWindow({ content: `<h3>${loc.title}</h3><p>${loc.hours}</p>` });
+        marker.addListener("click", function() { infowindow.open(map, marker); });
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
+</body>
+</html>
