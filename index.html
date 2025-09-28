@@ -221,6 +221,48 @@
       font-size: 0.95rem;
     }
     
+    /* MAP STYLING */
+    .map-container {
+      height: 400px;
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    
+    .map-placeholder {
+      height: 400px;
+      width: 100%;
+      border-radius: 10px;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      border: 2px dashed #ccc;
+    }
+    
+    .map-placeholder p {
+      margin-bottom: 1rem;
+      color: #666;
+    }
+    
+    .map-button {
+      background: var(--primary-red);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    
+    .map-button:hover {
+      background: var(--dark-red);
+    }
+    
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .header-content {
@@ -262,6 +304,10 @@
       
       .carousel {
         height: 250px;
+      }
+      
+      .map-placeholder, .map-container {
+        height: 300px;
       }
     }
   </style>
@@ -358,20 +404,33 @@
           <p>Timings: Mon to Sat - 4:00 PM to 8:00 PM</p>
         </div>
       </div>
-      <div id="map" style="height:400px; width:100%; border-radius: 10px;"></div>
+      
+      <!-- Map placeholder with directions links -->
+      <div class="map-placeholder">
+        <h3>Find Our Locations</h3>
+        <p>Click below to get directions to our clinics:</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+          <a href="https://maps.google.com/?q=JAYADEVA+MEDICAL+SCIENCES+CAMPUS+SEDAM+ROAD+KALABURAGI" target="_blank" class="map-button">
+            Directions to Jayadeva
+          </a>
+          <a href="https://maps.app.goo.gl/VLh49qt9tjiv8VRm7" target="_blank" class="map-button">
+            Directions to Ikon
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- CONTACT -->
     <section>
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:dr.email@example.com">dr.email@example.com</a></p>
+      <p>Email: <a href="mailto:dr.shrutikolli@example.com">dr.shrutikolli@example.com</a></p>
       <p>Phone: +91-XXXXXXXXXX</p>
     </section>
 
     <!-- APPOINTMENT -->
     <section>
       <h2>Book an Appointment</h2>
-      <form action="https://formspree.io/f/yourformid" method="POST">
+      <form id="appointment-form">
         <div>
           <input type="text" name="name" placeholder="Your Name" required>
         </div>
@@ -435,23 +494,12 @@
       }, 1000);
     }, 4000);
 
-    // Google Maps
-    function initMap() {
-      var locations = [
-        { lat: 12.9716, lng: 77.5946, title: "Clinic 1", hours: "Mon to Sat - 10:00 AM to 4:00 PM" },
-        { lat: 12.9352, lng: 77.6245, title: "Clinic 2", hours: "Mon to Sat - 4:00 PM to 8:00 PM" }
-      ];
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: locations[0]
-      });
-      locations.forEach(function(loc) {
-        var marker = new google.maps.Marker({ position: loc, map: map, title: loc.title });
-        var infowindow = new google.maps.InfoWindow({ content: `<h3>${loc.title}</h3><p>${loc.hours}</p>` });
-        marker.addListener("click", function() { infowindow.open(map, marker); });
-      });
-    }
+    // Form submission handling
+    document.getElementById('appointment-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your appointment request. We will contact you shortly.');
+      this.reset();
+    });
   </script>
-  <script async defer src="https://maps.app.goo.gl/VLh49qt9tjiv8VRm7"></script>
 </body>
 </html>
