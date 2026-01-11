@@ -175,45 +175,6 @@
       margin: 0.3rem 0;
     }
     
-    /* FORM */
-    form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    
-    .form-full-width {
-      grid-column: 1 / -1;
-    }
-    
-    form input, form textarea, form button {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-family: inherit;
-    }
-    
-    form textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-    
-    form button {
-      background: var(--primary-red);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
-      transition: background 0.3s ease;
-      padding: 1rem;
-    }
-    
-    form button:hover {
-      background: var(--dark-red);
-    }
-    
     /* FOOTER */
     footer {
       text-align: center;
@@ -281,10 +242,6 @@
         height: 220px;
       }
       
-      form {
-        grid-template-columns: 1fr;
-      }
-      
       section {
         padding: 1.5rem;
       }
@@ -311,6 +268,84 @@
       .map-placeholder, .map-container {
         height: 300px;
       }
+    }
+
+    /* SIMPLIFIED APPOINTMENT FORM */
+    .appointment-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-red);
+    }
+
+    .form-note {
+      background: #f8f9fa;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      border-left: 4px solid var(--primary-red);
+    }
+
+    .form-note ul {
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .form-note li {
+      margin-bottom: 0.3rem;
+    }
+
+    .whatsapp-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      width: 100%;
+      background: #25D366;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .whatsapp-button:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+    }
+
+    .whatsapp-icon {
+      font-size: 1.4rem;
     }
 
     /* ENHANCED GOOGLE REVIEWS SECTION */
@@ -380,6 +415,7 @@
     .rating-count {
       font-size: 1rem;
       color: var(--text-light);
+      margin-bottom: 1.5rem;
     }
 
     /* REVIEW CARDS */
@@ -644,7 +680,7 @@
 
       <p class="rating-count">Based on 418 verified Google Reviews</p>
 
-      <div class="reviews-container">
+      <div class="reviews-container" id="reviewsContainer">
         <!-- Review cards will be populated by JavaScript -->
       </div>
 
@@ -744,34 +780,44 @@
       <p>Phone: +91-8050690008</p>
     </section>
 
-    <!-- APPOINTMENT -->
+    <!-- SIMPLIFIED APPOINTMENT FORM -->
     <section>
       <h2>Book an Appointment</h2>
-      <form id="appointment-form">
-        <div>
-          <input type="text" name="name" placeholder="Your Name" required>
+      <div class="appointment-form">
+        <div class="form-group">
+          <label for="patientName">Full Name *</label>
+          <input type="text" id="patientName" class="form-control" placeholder="Enter your full name" required>
         </div>
-        <div>
-          <input type="email" name="email" placeholder="Your Email" required>
-        </div>
-        <div>
-          <input type="tel" name="phone" placeholder="Your Phone Number" required>
-        </div>
-        <div>
-          <input type="date" name="date" required>
-        </div>
-        <div class="form-full-width">
-          <textarea name="message" rows="4" placeholder="Additional details"></textarea>
-        </div>
-        <div class="form-full-width" style="text-align:center;">
-        <a href="https://wa.me/917019402144?text=Hello%20Doctor%2C%20I%20would%20like%20to%20book%20an%20appointment."
-          class="map-button"
-          target="_blank">
-          Book via WhatsApp
-        </a>
-      </div>
 
-      </form>
+        <div class="form-group">
+          <label for="patientPhone">WhatsApp Number *</label>
+          <input type="tel" id="patientPhone" class="form-control" placeholder="Enter your WhatsApp number" required>
+        </div>
+
+        <div class="form-group">
+          <label for="patientAge">Age *</label>
+          <input type="number" id="patientAge" class="form-control" placeholder="Enter your age" min="1" max="120" required>
+        </div>
+
+        <div class="form-note">
+          <p><strong>Important Information:</strong></p>
+          <ul>
+            <li>Appointment will be confirmed via WhatsApp</li>
+            <li>Please keep your WhatsApp active for confirmation</li>
+            <li>Bring all previous medical reports</li>
+            <li>Clinic timing confirmation will be sent separately</li>
+          </ul>
+        </div>
+
+        <button type="button" class="whatsapp-button" onclick="sendViaWhatsApp()">
+          <span class="whatsapp-icon">📱</span>
+          <span>Book Appointment via WhatsApp</span>
+        </button>
+
+        <p style="text-align: center; margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+          Clicking the button will open WhatsApp with your details pre-filled
+        </p>
+      </div>
     </section>
   </div>
 
@@ -815,13 +861,6 @@
         carouselImg.style.opacity = 1;
       }, 1000);
     }, 4000);
-
-    // Form submission handling
-    document.getElementById('appointment-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you for your appointment request. We will contact you shortly.');
-      this.reset();
-    });
 
     // Enhanced Google Reviews Data
     const reviews = [
@@ -896,8 +935,10 @@
 
     // Function to render reviews
     function renderReviews() {
-      const container = document.querySelector('.reviews-container');
+      const container = document.getElementById('reviewsContainer');
       const navContainer = document.getElementById('reviewNav');
+      
+      if (!container) return;
       
       container.innerHTML = '';
       navContainer.innerHTML = '';
@@ -953,26 +994,107 @@
     // Auto-rotate reviews
     let currentRotation = 0;
     function rotateReviews() {
+      if (reviews.length === 0) return;
+      
       currentRotation = (currentRotation + 1) % reviews.length;
       const rotatedReviews = [...reviews.slice(currentRotation), ...reviews.slice(0, currentRotation)];
-      renderReviews(rotatedReviews);
+      
+      // Update the global reviews array
+      reviews.length = 0;
+      reviews.push(...rotatedReviews);
+      
+      renderReviews();
     }
 
-    // Initialize reviews
-    renderReviews();
-    
-    // Auto-rotate every 8 seconds
-    setInterval(rotateReviews, 8000);
+    // WhatsApp Booking Function
+    function sendViaWhatsApp() {
+      const name = document.getElementById('patientName').value.trim();
+      const phone = document.getElementById('patientPhone').value.trim();
+      const age = document.getElementById('patientAge').value.trim();
 
-    // Update active dot on hover
-    document.addEventListener('DOMContentLoaded', () => {
-      const dots = document.querySelectorAll('.nav-dot');
-      dots.forEach((dot, index) => {
-        dot.addEventListener('mouseenter', () => {
-          dots.forEach(d => d.classList.remove('active'));
-          dot.classList.add('active');
-        });
-      });
+      // Validation
+      if (!name) {
+        alert('Please enter your name');
+        return;
+      }
+      if (!phone) {
+        alert('Please enter your WhatsApp number');
+        return;
+      }
+      if (!age || age < 1 || age > 120) {
+        alert('Please enter a valid age (1-120)');
+        return;
+      }
+
+      // Format phone number (remove any non-digit characters)
+      const cleanPhone = phone.replace(/\D/g, '');
+      
+      // Doctor's WhatsApp number
+      const doctorWhatsApp = '917019402144';
+      
+      // Create the message
+      const message = `*Appointment Request - Dr. Shruti Kolli*
+
+*Patient Details:*
+📋 Name: ${name}
+📱 WhatsApp: ${phone}
+🎂 Age: ${age} years
+
+*Request:*
+I would like to book an appointment with Dr. Shruti Kolli.
+
+*Note:*
+This appointment request was sent via the official website.
+Please provide available time slots for consultation.`;
+
+      // Encode the message for URL
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Create WhatsApp URL
+      const whatsappURL = `https://wa.me/${doctorWhatsApp}?text=${encodedMessage}`;
+      
+      // Open WhatsApp in new tab
+      window.open(whatsappURL, '_blank');
+      
+      // Clear form after submission
+      document.getElementById('patientName').value = '';
+      document.getElementById('patientPhone').value = '';
+      document.getElementById('patientAge').value = '';
+    }
+
+    // Allow Enter key to submit form
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        if (e.target.type !== 'textarea') {
+          e.preventDefault();
+          sendViaWhatsApp();
+        }
+      }
+    });
+
+    // Phone number formatting
+    document.getElementById('patientPhone').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 10) {
+        value = value.substring(0, 10);
+      }
+      e.target.value = value;
+    });
+
+    // Age input validation
+    document.getElementById('patientAge').addEventListener('input', function(e) {
+      let value = parseInt(e.target.value);
+      if (isNaN(value)) return;
+      if (value < 1) e.target.value = 1;
+      if (value > 120) e.target.value = 120;
+    });
+
+    // Initialize reviews on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      renderReviews();
+      
+      // Auto-rotate every 8 seconds
+      setInterval(rotateReviews, 8000);
     });
   </script>
 </body>
