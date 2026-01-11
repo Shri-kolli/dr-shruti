@@ -351,6 +351,43 @@
       color: var(--primary-red);
       font-size: 0.95rem;
     }
+        /* STAR RATING */
+    .stars {
+      display: inline-flex;
+      margin-right: 0.4rem;
+      font-size: 1.4rem;
+      vertical-align: middle;
+    }
+
+    .star {
+      position: relative;
+      color: #ccc;
+      margin-right: 2px;
+    }
+
+    .star.full {
+      color: #f4b400; /* Google yellow */
+    }
+
+    .star.partial {
+      color: #ccc;
+    }
+
+    .star.partial .fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 78%;
+      height: 100%;
+      overflow: hidden;
+      color: #f4b400;
+      pointer-events: none;
+    }
+
+    .star.partial .fill::before {
+      content: "★";
+    }
+
 
   </style>
 </head>
@@ -389,8 +426,18 @@
     <section>
       <div class="reviews-header">
         <div class="reviews-rating">
-          ⭐ 4.78 <span>(418 Google Reviews)</span>
+        <div class="stars">
+          <span class="star full">★</span>
+          <span class="star full">★</span>
+          <span class="star full">★</span>
+          <span class="star full">★</span>
+          <span class="star partial">
+            <span class="fill"></span>★
+          </span>
         </div>
+        <strong>4.78</strong>
+        <span>(418 Google Reviews)</span>
+      </div>
         <p class="reviews-subtitle">Trusted by patients across Karnataka</p>
       </div>
 
@@ -481,8 +528,8 @@
     <!-- CONTACT -->
     <section>
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:dr.shrutikolli@example.com">dr.shrutikolli@example.com</a></p>
-      <p>Phone: +91-XXXXXXXXXX</p>
+      <p>Email: <a href="mailto:drshrutikolli@gmail.com">drshrutikolli@gmail.com</a></p>
+      <p>Phone: +91-8050690008</p>
     </section>
 
     <!-- APPOINTMENT -->
@@ -504,9 +551,14 @@
         <div class="form-full-width">
           <textarea name="message" rows="4" placeholder="Additional details"></textarea>
         </div>
-        <div class="form-full-width">
-          <button type="submit">Send Appointment Request</button>
-        </div>
+        <div class="form-full-width" style="text-align:center;">
+        <a href="https://wa.me/917019402144?text=Hello%20Doctor%2C%20I%20would%20like%20to%20book%20an%20appointment."
+          class="map-button"
+          target="_blank">
+          Book via WhatsApp
+        </a>
+      </div>
+
       </form>
     </section>
   </div>
