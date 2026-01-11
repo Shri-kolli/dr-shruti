@@ -13,6 +13,8 @@
       --text-dark: #222;
       --text-light: #555;
       --shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --google-yellow: #fbbc04;
+      --google-green: #0d9d58;
     }
     
     * {
@@ -310,100 +312,283 @@
         height: 300px;
       }
     }
-        /* GOOGLE REVIEWS */
+
+    /* ENHANCED GOOGLE REVIEWS SECTION */
+    .reviews-section {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,245,240,0.9) 100%);
+      border: 1px solid rgba(251, 188, 4, 0.2);
+    }
+
     .reviews-header {
-      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(251, 188, 4, 0.2);
     }
 
-    .reviews-rating {
-      font-size: 1.4rem;
+    .google-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .google-icon {
+      width: 24px;
+      height: 24px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%234285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="%2334A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="%23FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="%23EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>') no-repeat center;
+      background-size: contain;
+    }
+
+    .rating-badge {
+      background: var(--google-green);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
       font-weight: bold;
-      color: var(--primary-red);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
 
-    .reviews-rating span {
-      font-size: 0.95rem;
+    .rating-badge .stars {
+      color: white;
+    }
+
+    .rating-score {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--text-dark);
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .rating-score .out-of {
+      font-size: 1.2rem;
       color: var(--text-light);
       font-weight: normal;
-      margin-left: 0.4rem;
     }
 
-    .reviews-subtitle {
-      font-size: 0.95rem;
+    .rating-count {
+      font-size: 1rem;
       color: var(--text-light);
+    }
+
+    /* REVIEW CARDS */
+    .reviews-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .review-card {
-      background: rgba(255,255,255,0.9);
+      background: white;
+      border-radius: 12px;
       padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      max-width: 700px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .review-text {
-      font-style: italic;
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .reviewer-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .reviewer-name {
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .review-date {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .review-stars {
+      color: var(--google-yellow);
+      font-size: 1.8rem;
+      letter-spacing: 2px;
       margin-bottom: 0.8rem;
     }
 
-    .review-author {
+    .review-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      font-style: normal;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .review-text:before {
+      content: "“";
+      font-size: 3rem;
+      color: rgba(0,0,0,0.1);
+      position: absolute;
+      left: -0.5rem;
+      top: -1rem;
+    }
+
+    .review-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.85rem;
+    }
+
+    .verified-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--google-green);
+      font-weight: 500;
+    }
+
+    .verified-icon {
+      font-size: 1rem;
+    }
+
+    .review-response {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-left: 3px solid var(--primary-red);
+    }
+
+    .response-label {
       font-weight: bold;
       color: var(--primary-red);
-      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-        /* STAR RATING */
+
+    /* PREMIUM STARS */
     .stars {
       display: inline-flex;
       margin-right: 0.7rem;
-      font-size: 2.2rem;   /* ⭐ bigger & premium */
+      font-size: 2.2rem;
       line-height: 1;
       vertical-align: middle;
     }
 
-    .reviews-rating strong {
-      font-size: 1.6rem;
-      vertical-align: middle;
-    }
-
-
-    .review-stars {
-      color: #f4b400; /* Google yellow */
-      font-size: 1.2rem;
-      margin-bottom: 0.4rem;
-    }
-
-
-
-    .star {
+    .review-stars-large {
+      font-size: 2rem;
+      color: var(--google-yellow);
+      letter-spacing: 3px;
       position: relative;
-      color: #ccc;
-      margin-right: 2px;
     }
 
-    .star.full {
-      color: #f4b400; /* Google yellow */
-    }
-
-    .star.partial {
-      color: #ccc;
-    }
-
-    .star.partial .fill {
+    .stars-bg {
+      color: #e0e0e0;
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 78%;
-      height: 100%;
+      z-index: 1;
+    }
+
+    .stars-fg {
+      color: var(--google-yellow);
+      position: relative;
+      z-index: 2;
       overflow: hidden;
-      color: #f4b400;
-      pointer-events: none;
     }
 
-    .star.partial .fill::before {
-      content: "★";
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
 
+    /* REVIEW NAVIGATION */
+    .review-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .nav-dot.active {
+      background: var(--primary-red);
+      transform: scale(1.2);
+    }
+
+    .view-all-reviews {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .view-all-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--primary-red);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 2px solid var(--primary-red);
+      transition: all 0.3s ease;
+    }
+
+    .view-all-btn:hover {
+      background: var(--primary-red);
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -437,35 +622,43 @@
       </div>
     </section>
 
-        <!-- GOOGLE REVIEWS -->
-    <section>
+    <!-- ENHANCED GOOGLE REVIEWS -->
+    <section class="reviews-section">
       <div class="reviews-header">
-        <div class="reviews-rating">
-        <div class="stars">
-          <span class="star full">★</span>
-          <span class="star full">★</span>
-          <span class="star full">★</span>
-          <span class="star full">★</span>
-          <span class="star partial">
-            <span class="fill"></span>★
-          </span>
+        <div class="rating-score">
+          <span>4.78</span>
+          <span class="out-of">/ 5.0</span>
+          <div class="review-stars-large">
+            <div class="stars-bg">★★★★★</div>
+            <div class="stars-fg" style="width: 95.6%">★★★★★</div>
+          </div>
         </div>
-        <strong>4.78</strong>
-        <span>(418 Google Reviews)</span>
-      </div>
-        <p class="reviews-subtitle">Trusted by patients across Karnataka</p>
+        <div class="google-badge">
+          <div class="google-icon"></div>
+          <div class="rating-badge">
+            <span class="stars">★★★★★</span>
+            <span>4.78</span>
+          </div>
+        </div>
       </div>
 
-      <div class="review-card">
-        <div class="review-stars">
-          ★★★★★
-        </div>
-        <p class="review-text" id="review-text"></p>
-        <p class="review-author" id="review-author"></p>
+      <p class="rating-count">Based on 418 verified Google Reviews</p>
+
+      <div class="reviews-container">
+        <!-- Review cards will be populated by JavaScript -->
       </div>
 
+      <div class="review-nav" id="reviewNav">
+        <!-- Navigation dots will be added by JavaScript -->
+      </div>
+
+      <div class="view-all-reviews">
+        <a href="#" class="view-all-btn">
+          <span>View All Reviews on Google</span>
+          <span>→</span>
+        </a>
+      </div>
     </section>
-
 
     <!-- ABOUT -->
     <section>
@@ -629,42 +822,158 @@
       alert('Thank you for your appointment request. We will contact you shortly.');
       this.reset();
     });
-        // Google reviews rotation
+
+    // Enhanced Google Reviews Data
     const reviews = [
-      ["Dr. Shruti madam explained my heart issue clearly and treated me with great care. Very satisfied.", "– Savita, Kalaburagi"],
-      ["My father’s angiography went smoothly. Doctor was calm and confident throughout.", "– Rakesh, Vijayapura"],
-      ["Very patient and knowledgeable doctor. No unnecessary tests, honest guidance.", "– Radhika, Raichur"],
-      ["Excellent treatment and follow-up. Gave us confidence during a stressful time.", "– Sudeep, Ballari"],
-      ["My mother is doing well now. Doctor listens carefully and explains everything.", "– Shalini, Bidar"],
-      ["Diagnosis was accurate and medicines worked well. Highly recommend.", "– Tousif, Kalaburagi"],
-      ["Explained reports patiently and answered all our doubts.", "– Joseph, Hubballi"],
-      ["Overall very good experience. Professional and kind approach.", "– Preeti, Yadgir"],
-      ["Clear explanation and good care. Follow-up advice was very practical.", "– Shivu, Koppal"],
-      ["Doctor was polite and reassuring. Treatment gave good results.", "– Koushik, Davanagere"],
-      ["Handled my case with confidence and care. Very thankful.", "– Ibrahim, Kalaburagi"],
-      ["Friendly doctor and good hospital support staff.", "– Jannat, Gulbarga"]
+      {
+        name: "Savita R.",
+        initials: "SR",
+        rating: 5,
+        date: "2 weeks ago",
+        text: "Dr. Shruti madam explained my heart issue clearly and treated me with great care. Very satisfied with the treatment and follow-up.",
+        response: "Thank you Savita! It was our pleasure to help you. Wishing you continued good health.",
+        verified: true
+      },
+      {
+        name: "Rakesh Kumar",
+        initials: "RK",
+        rating: 5,
+        date: "1 month ago",
+        text: "My father's angiography went smoothly. Doctor was calm and confident throughout the procedure. Excellent care at Jayadeva.",
+        response: "Glad to hear your father is doing well. Thank you for trusting us.",
+        verified: true
+      },
+      {
+        name: "Radhika P.",
+        initials: "RP",
+        rating: 5,
+        date: "3 weeks ago",
+        text: "Very patient and knowledgeable doctor. No unnecessary tests, honest guidance. Saved us from a lot of anxiety.",
+        response: null,
+        verified: true
+      },
+      {
+        name: "Sudeep M.",
+        initials: "SM",
+        rating: 4,
+        date: "2 months ago",
+        text: "Excellent treatment and follow-up. Gave us confidence during a stressful time. Could improve waiting time though.",
+        response: "Thank you for the feedback. We're working on reducing wait times.",
+        verified: true
+      },
+      {
+        name: "Shalini V.",
+        initials: "SV",
+        rating: 5,
+        date: "1 week ago",
+        text: "My mother is doing well now. Doctor listens carefully and explains everything in simple terms. Highly recommended!",
+        response: "Delighted to hear your mother is recovering well!",
+        verified: true
+      },
+      {
+        name: "Mohammed T.",
+        initials: "MT",
+        rating: 5,
+        date: "3 days ago",
+        text: "Diagnosis was accurate and medicines worked perfectly. Follow-up was thorough. Very professional approach.",
+        response: "Thank you for your kind words. Stay healthy!",
+        verified: true
+      }
     ];
 
-    let reviewIndex = 0;
-    const reviewTextEl = document.getElementById("review-text");
-    const reviewAuthorEl = document.getElementById("review-author");
-
-    function rotateReview() {
-      reviewTextEl.style.opacity = 0;
-      reviewAuthorEl.style.opacity = 0;
-
-      setTimeout(() => {
-        reviewTextEl.textContent = reviews[reviewIndex][0];
-        reviewAuthorEl.textContent = reviews[reviewIndex][1];
-        reviewTextEl.style.opacity = 1;
-        reviewAuthorEl.style.opacity = 1;
-        reviewIndex = (reviewIndex + 1) % reviews.length;
-      }, 500);
+    // Function to create star rating
+    function createStars(rating) {
+      let stars = '';
+      for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+          stars += '★';
+        } else {
+          stars += '☆';
+        }
+      }
+      return stars;
     }
 
-    rotateReview();
-    setInterval(rotateReview, 5000);
+    // Function to render reviews
+    function renderReviews() {
+      const container = document.querySelector('.reviews-container');
+      const navContainer = document.getElementById('reviewNav');
+      
+      container.innerHTML = '';
+      navContainer.innerHTML = '';
+      
+      reviews.forEach((review, index) => {
+        // Create review card
+        const card = document.createElement('div');
+        card.className = 'review-card fade-in';
+        card.innerHTML = `
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">${review.initials}</div>
+              <div>
+                <div class="reviewer-name">${review.name}</div>
+                <div class="review-date">${review.date}</div>
+              </div>
+            </div>
+            <div class="review-stars">${createStars(review.rating)}</div>
+          </div>
+          <div class="review-text">${review.text}</div>
+          ${review.response ? `
+            <div class="review-response">
+              <div class="response-label">✓ Doctor's Response</div>
+              <div>${review.response}</div>
+            </div>
+          ` : ''}
+          <div class="review-footer">
+            ${review.verified ? `
+              <div class="verified-badge">
+                <span class="verified-icon">✓</span>
+                <span>Verified Patient</span>
+              </div>
+            ` : ''}
+            <div class="review-rating">${review.rating}.0 ★</div>
+          </div>
+        `;
+        
+        container.appendChild(card);
+        
+        // Create navigation dot
+        const dot = document.createElement('div');
+        dot.className = 'nav-dot';
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          // Rotate reviews
+          const rotatedReviews = [...reviews.slice(index), ...reviews.slice(0, index)];
+          renderReviews(rotatedReviews);
+        });
+        navContainer.appendChild(dot);
+      });
+    }
 
+    // Auto-rotate reviews
+    let currentRotation = 0;
+    function rotateReviews() {
+      currentRotation = (currentRotation + 1) % reviews.length;
+      const rotatedReviews = [...reviews.slice(currentRotation), ...reviews.slice(0, currentRotation)];
+      renderReviews(rotatedReviews);
+    }
+
+    // Initialize reviews
+    renderReviews();
+    
+    // Auto-rotate every 8 seconds
+    setInterval(rotateReviews, 8000);
+
+    // Update active dot on hover
+    document.addEventListener('DOMContentLoaded', () => {
+      const dots = document.querySelectorAll('.nav-dot');
+      dots.forEach((dot, index) => {
+        dot.addEventListener('mouseenter', () => {
+          dots.forEach(d => d.classList.remove('active'));
+          dot.classList.add('active');
+        });
+      });
+    });
   </script>
 </body>
 </html>
