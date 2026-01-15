@@ -68,6 +68,8 @@
       color: var(--text-light);
       margin-bottom: 1rem;
     }
+
+    
     
     .header-image {
       flex: 1;
@@ -635,8 +637,11 @@
         <div class="header-text">
           <h1>Dr. Shruti Kolli</h1>
           <p>MD (Int Medicine) (Gold medalist)</p>
-          <p>Interventional Cardiologist</p>
+          <p>DM Cardiology, Interventional Cardiologist</p>
           <p>Assistant Professor of Cardiology, Jayadeva Hospital</p>
+          <a href="#appointment" class="map-button" style="display: inline-block; margin-top: 1rem;">
+    Book an Appointment
+          </a>
         </div>
         <div class="header-image">
           <div class="doctor-image">
@@ -732,7 +737,7 @@
     </section>
 
     <!-- PUBLICATIONS -->
-    <section>
+    <!-- <section>
       <h2>Conferences & Publications</h2>
       <ul>
         <li>Clinical Profile of Community Acquired Pneumonia in Elderly – JKIMSU, 2017</li>
@@ -740,7 +745,7 @@
         <li>Identifying Dementia in Elderly Population: A Camp Approach – JEBMH, 2015</li>
         <li>Beyond Angiogram! Impact of IVUS on Revascularization of Complex CAD – Indian Heart Journal, 2021</li>
       </ul>
-    </section>
+    </section> -->
 
     <!-- LOCATIONS -->
     <section>
@@ -777,11 +782,12 @@
     <section>
       <h2>Contact</h2>
       <p>Email: <a href="mailto:drshrutikolli@gmail.com">drshrutikolli@gmail.com</a></p>
-      <p>Phone: +91-8050690008</p>
+      <p>Phone: +91-9036412592</p>
+      <p>Alternate Phone: +91-8050690008</p>
     </section>
 
     <!-- SIMPLIFIED APPOINTMENT FORM -->
-    <section>
+    <section id="appointment">
       <h2>Book an Appointment</h2>
       <div class="appointment-form">
         <div class="form-group">
@@ -1030,7 +1036,7 @@
       const cleanPhone = phone.replace(/\D/g, '');
       
       // Doctor's WhatsApp number
-      const doctorWhatsApp = '917019402144';
+      const doctorWhatsApp = '919036412592';
       
       // Create the message
       const message = `*Appointment Request - Dr. Shruti Kolli*
